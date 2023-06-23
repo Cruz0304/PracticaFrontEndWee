@@ -1,0 +1,75 @@
+﻿@model PracticaFrontEnd.Models.Items
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Participantes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreCompania" class="control-label"></label>
+                <input asp-for="NombreCompania" class="form-control" id="NombreCompania" onkeyup="VerificarCampo()" />
+                <span asp-validation-for="NombreCompania" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cedula" class="control-label"></label>
+                <input asp-for="Cedula" class="form-control" id="Cedula" onkeyup="VerificarCampo()" />
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control"  id="Nombre" onkeyup="VerificarCampo()">
+            </div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" id="Titulo" onkeyup="VerificarCampo()" >
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" id="Correo" onkeyup="VerificarCampo()" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono" class="control-label"></label>
+                <input asp-for="telefono" class="form-control" id="telefono" onkeyup="VerificarCampo()" />
+                
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" disabled id="create" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function VerificarCampo() {
+            var nombreCompania = document.getElementById('NombreCompania').value;
+            var cedula = document.getElementById('Cedula').value;
+            var nombre = document.getElementById('Nombre').value;
+            var Titulo = document.getElementById('Titulo').value;
+            var correo = document.getElementById('Correo').value;
+            var telefono = document.getElementById('telefono').value;
+            if (nombreCompania.trim() !== '' &&
+                cedula.trim() !== ''&&
+                nombre.trim() !== ''&&
+                Titulo.trim() !== ''&&
+                correo.trim() !== ''&&
+                telefono.trim() !== '') {
+                create.disabled = false;
+            } else {
+                create.disabled = true;
+            }
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
